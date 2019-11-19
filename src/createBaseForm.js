@@ -283,6 +283,9 @@ function createBaseForm(option = {}, mixins = []) {
       },
 
       getRules(fieldMeta, action) {
+        if(!fieldMeta || !fieldMeta.validate)
+          return [];
+
         const actionRules = fieldMeta.validate.filter((item) => {
           return !action || item.trigger.indexOf(action) >= 0;
         }).map((item) => item.rules);
